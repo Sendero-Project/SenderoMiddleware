@@ -226,6 +226,8 @@ def device_server_worker():
     while worker_enabled:
         print("Listening for Device Registering UDP messages...")
         data, addr = sock_udp.recvfrom(100)
+
+        print(data)
         sip_packet = dict(list(map(lambda x: sip_key_value(x), data.split(b'\n'))))
         print(sip_packet)
 

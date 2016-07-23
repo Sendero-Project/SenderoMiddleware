@@ -147,7 +147,7 @@ class DeviceKeys:
 The total amount of pixels to which color data is going to be sent for.
 """
 
-GLOBAL_PIXELS_QTY = 488
+GLOBAL_PIXELS_QTY = 90
 
 # Default color order is GRB.
 # Set DeviceKeys.COLOR_ORDER if you need to change this
@@ -171,16 +171,33 @@ GLOBAL_PIXELS_QTY = 488
 Here is where device specific behaviour is configured using DeviceKeys
 DEVICE_CONFIG key must be the 'deviceId' as number
 """
-DEVICE_CONFIG = {}
-
-device = 0
-for pixel in range(0, GLOBAL_PIXELS_QTY, 8):
-    DEVICE_CONFIG[device] = {
-        DeviceKeys.FIRST_PIXEL: pixel, 
-        DeviceKeys.MANAGED_PIXELS_QTY: 8,
-        DeviceKeys.COLOR_ORDER: ['BRG'] * 8
+DEVICE_CONFIG = {
+    0: {
+        DeviceKeys.FIRST_PIXEL: 37,
+        DeviceKeys.MANAGED_PIXELS_QTY: 1,
+        DeviceKeys.COLOR_ORDER: ['BRG'] * 1
+    },
+    1: {
+        DeviceKeys.FIRST_PIXEL: 77,
+        DeviceKeys.MANAGED_PIXELS_QTY: 3,
+        DeviceKeys.COLOR_ORDER: ['BRG'] * 3
+    },
+    2: {
+        DeviceKeys.FIRST_PIXEL: 20,
+        DeviceKeys.MANAGED_PIXELS_QTY: 2,
+        DeviceKeys.COLOR_ORDER: ['BRG'] * 2
     }
-    device += 1
+}
+
+
+# device = 0
+# for pixel in range(0, GLOBAL_PIXELS_QTY, 8):
+#     DEVICE_CONFIG[device] = {
+#         DeviceKeys.FIRST_PIXEL: pixel, 
+#         DeviceKeys.MANAGED_PIXELS_QTY: 8,
+#         DeviceKeys.COLOR_ORDER: ['BRG'] * 8
+#     }
+#     device += 1
 
 
 """

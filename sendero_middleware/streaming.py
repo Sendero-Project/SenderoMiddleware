@@ -78,10 +78,10 @@ def send_dancing_sins():
     MAX_PACKETS = config.FRAMES_PER_SECOND * 60 * 120
 
     from sendero_middleware import devices
-    while len(devices.devices_connected) != len(config.DEVICE_CONFIG.keys()):
-        time.sleep(0.5)
+    # while len(devices.devices_connected) != len(config.DEVICE_CONFIG.keys()):
+    #     time.sleep(0.5)
 
-    print("All devices connected!")
+    # print("All devices connected!")
 
 
     global clock_expiration_period_finish
