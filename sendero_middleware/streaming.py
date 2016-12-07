@@ -40,10 +40,19 @@ def listen_and_redirect_artnet_packets(udp_ip, udp_port, broadcast_port):
 
     global clock_expiration_period_finish
 
+    last_packet_time = time.time()
+
     while True:
         try:
             # Receive data from an ArtNet Server
             data, addr = sock_artnet.recvfrom(ARTNET_MAX_PACKAGE_LEN)
+            #this_packet_time = time.time()
+
+            #if (this_packet_time - last_packet_time) < 0.041667:
+                #print("DESCARTO PAQUETES SEGUIDOS")
+             #   continue
+
+            #last_packet_time = this_packet_time
 
             # Upack the ArtNet data
             message = utils.unpack_raw_artnet_packet(data)

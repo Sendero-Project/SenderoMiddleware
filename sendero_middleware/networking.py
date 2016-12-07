@@ -94,12 +94,20 @@ N = 0
 suma = 0
 mean = 0
 prev = 0
+
+last_millis = 0
+
 def send_streaming_packet(seq, flags, payload):
 	global N
 	global mean
 	global suma
 	global prev
+	global last_millis
 	currMillis = utils.millis()
+	if currMillis - last_millis < 20:
+		print(currMillis - last_millis)
+		return
+	last_millis = currMillis
 	if groups_qty == 1:
 		packet = utils.sendero_data_packet(
 			currMillis + config.PLAYBACK_TIME_DELAY, seq, flags, payload)

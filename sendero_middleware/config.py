@@ -40,7 +40,7 @@ STATS_REQUEST_INTERVAL = 3600
 """
 Sets how often the middleware sends a 'keep alive' packet to the devices.
 """
-KEEP_ALIVE_INTERVAL = 30
+KEEP_ALIVE_INTERVAL = 10
 
 """
 UDP port where devices request for connection.
@@ -100,8 +100,11 @@ PLAYBACK_TIME_DELAY = 100  # ms
 
 OFFSET_SIGMA = 3  # ms
 EXPIRATION_PERIOD = 60 * 1000  # ms
+# OFFSET_MEAN_CALIBRATION_CONSECUTIVE_PACKETS = 10# * FRAMES_PER_SECOND
+# OFFSET_MEAN_CALIBRATION_DERIVATIVE_THRESHOLD = 1#0.001
 OFFSET_MEAN_CALIBRATION_CONSECUTIVE_PACKETS = 2 * FRAMES_PER_SECOND
 OFFSET_MEAN_CALIBRATION_DERIVATIVE_THRESHOLD = 0.001
+
 FIRST_PACKETS_IGNORE_QTY = 3 * FRAMES_PER_SECOND
 
 # #########################################
@@ -147,7 +150,7 @@ class DeviceKeys:
 The total amount of pixels to which color data is going to be sent for.
 """
 
-GLOBAL_PIXELS_QTY = 488
+GLOBAL_PIXELS_QTY = 90
 
 # Default color order is GRB.
 # Set DeviceKeys.COLOR_ORDER if you need to change this
@@ -174,13 +177,32 @@ DEVICE_CONFIG key must be the 'deviceId' as number
 DEVICE_CONFIG = {}
 
 device = 0
-for pixel in range(0, GLOBAL_PIXELS_QTY, 8):
+for pixel in range(0, GLOBAL_PIXELS_QTY, 8 * 2):
     DEVICE_CONFIG[device] = {
         DeviceKeys.FIRST_PIXEL: pixel, 
-        DeviceKeys.MANAGED_PIXELS_QTY: 8,
-        DeviceKeys.COLOR_ORDER: ['BRG'] * 8
+        DeviceKeys.MANAGED_PIXELS_QTY: 8 * 2,
+        DeviceKeys.COLOR_ORDER: ['BRG'] * 8 * 2
     }
     device += 1
+
+DEVICE_CONFIG[6] = {
+    DeviceKeys.FIRST_PIXEL: 29, 
+    DeviceKeys.MANAGED_PIXELS_QTY: 3,
+    DeviceKeys.COLOR_ORDER: ['BRG'] * 3
+}
+
+DEVICE_CONFIG[7] = {
+    DeviceKeys.FIRST_PIXEL: 44, 
+    DeviceKeys.MANAGED_PIXELS_QTY: 4,
+    DeviceKeys.COLOR_ORDER: ['BRG'] * 4
+}
+
+DEVICE_CONFIG[8] = {
+    DeviceKeys.FIRST_PIXEL: 62, 
+    DeviceKeys.MANAGED_PIXELS_QTY: 2,
+    DeviceKeys.COLOR_ORDER: ['BRG'] * 2
+}
+
 
 
 """
